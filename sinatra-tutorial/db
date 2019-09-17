@@ -1,0 +1,21 @@
+require 'pg'
+
+host = 'localhost'
+user = 'rocky098'
+password = ''
+dbname = 'myapp'
+
+client = PG::connect(
+ :host => host,
+ :user => user,
+ :password => password,
+ :dbname => dbname)
+name = 'kinjo'
+password = 'kinjo'
+
+users = client.exec_params("select * from users where name = '#{name}' and password = '#{password}'")
+
+user = users[0]
+
+p user['name']
+p user['email'] 
